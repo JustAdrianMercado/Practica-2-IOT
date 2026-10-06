@@ -4,19 +4,23 @@
  * Basado en el ejemplo WiFiClient de arduino-esp32
  * (libraries/WiFi/examples/WiFiClient).
  *
- * 1. Cambiar ssid, password y serverIp (IP de la PC que corre basic_server.py).
- * 2. Cargar el sketch y abrir el Serial Monitor a 115200 baudios.
+ * 1. Copiar esp32/include/secrets.example.h como secrets.h y completar
+ *    la red WiFi y la IP de la PC que corre server/basic_server.py.
+ * 2. Compilar y cargar con PlatformIO (entorno wifi_test) y abrir el
+ *    Serial Monitor (115200 baudios).
  * 3. La ESP32 envía "HELLO <n>" cada segundo e imprime la respuesta del servidor.
  */
 
 #include <Arduino.h>
 #include <WiFi.h>
 
-const char *ssid = "your-ssid";          // Cambiar por el nombre de la red WiFi
-const char *password = "your-password";  // Cambiar por la contraseña
+#include "secrets.h"
 
-const char *serverIp = "192.168.0.102";  // IP de la PC con el servidor
-const uint16_t serverPort = 5000;
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_PASSWORD;
+
+const char *serverIp = SERVER_IP;
+const uint16_t serverPort = SERVER_PORT;
 
 const unsigned long SEND_INTERVAL_MS = 1000;
 
